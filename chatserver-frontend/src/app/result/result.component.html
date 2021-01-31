@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="py-sm-4">
+        <h4>Well done!</h4>
+        <p>Now press the <i>Add friend</i> button in Retroshare and paste the chat server's ID:</p>
+        <div class="form-group input-group">
+            <textarea class="form-control fixed" rows="1" readonly id="serverId" name="retroshareId" [ngModel]="serverInvite | trim"></textarea>
+            <button (click)="copyToClipboard('serverId')" class="btn btn-outline-secondary input-group-append" title="Copy to clipboard">
+                <i-bs name="clipboard"></i-bs>
+            </button>
+        </div>
+
+        <p>
+            In a few minutes, the chat server will be online in your list of connected nodes. You will be able to access
+            the chat room and start making friends.
+        </p>
+
+    </div>
+</div>

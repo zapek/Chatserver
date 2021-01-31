@@ -1,0 +1,34 @@
+apply plugin: 'org.ec4j.editorconfig'
+
+editorconfig {
+    includes = ['src/**']
+    excludes = ['dist/**', 'node_modules/**']
+}
+
+task installAngular(type: Exec) {
+    description = "Install everything needed for Angular development"
+    group = BasePlugin.BUILD_GROUP
+    if (System.getProperty("os.name").toUpperCase().contains("WINDOWS")) {
+        commandLine "npm.cmd", "install"
+    } else {
+        commandLine "npm", "install"
+    }
+}
+
+task buildAngular(type: Exec) {
+    description = "Build the Angular app"
+    group = BasePlugin.BUILD_GROUP
+    // ng doesn't exist as a file in windows -> ng.cmd
+    if (System.getProperty("os.name").toUpperCase().contains("WINDOWS")) {
+        commandLine "ng.cmd", "build"
+    } else {
+        commandLine "ng", "build"
+    }
+}
+
+task cleanAngular(type: Exec) {
+    description = "Deletes the Angular build directory"
+    group = BasePlugin.BUILD_GROUP
+    delete "dist"
+    delete "node_modules"
+}

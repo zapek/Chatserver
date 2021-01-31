@@ -1,0 +1,22 @@
+version: '3.7'
+
+services:
+
+  chatserver:
+    image: zapek/chatserver:0.1.0
+    environment:
+      - SERVER_PORT=8080
+    network_mode: "host"
+
+  retroshare-service:
+    build:
+      context: ./retroshare
+      args:
+        - KEEP_SOURCE=true
+    network_mode: "host"
+    volumes: 
+      - retroshare:/root/.retroshare
+    command: retroshare-service --jsonApiPort 9092 --jsonApiBindAddress 0.0.0.0
+
+volumes:
+  retroshare:

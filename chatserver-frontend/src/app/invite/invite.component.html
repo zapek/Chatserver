@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="py-sm-4">
+        <h3>Retroshare Chat Server</h3>
+        <p>You want to try Retroshare but you have no friends to connect to? Use that tool which will
+            allow you to connect to a chat room to find friends within the network.</p>
+
+        <p>How to use:</p>
+        <ul>
+            <li>Enter your Retroshare ID below and press the submit button</li>
+            <li>Copy the chat server ID that will be given back to you and paste it in <i>Add friend</i> in your Retroshare client</li>
+            <li>Join a chat room and exchange your ID with other users!</li>
+        </ul>
+
+        <form>
+            <div class="form-group">
+                <textarea class="form-control fixed" rows="1" name="retroshareId" [ngModel]="rsId | trim" (ngModelChange)="rsId=$event" placeholder="Paste your Retroshare ID here" maxlength="512"></textarea>
+            </div>
+            <button type="submit" [disabled]="!rsId || sending" (click)="send()" class="btn btn-primary">
+                Submit
+            </button>&nbsp;<span *ngIf="errorMessage" class="text-danger">Couldn't accept ID: {{errorMessage}}</span>
+        </form>
+        <span [hidden]="!sending">Submitting... <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span></span>
+        <br>
+        <p class="small">Notes:</p>
+        <ul class="small">
+            <li>only the chat service is available (no file transfers, distant chats, channels, search, forums, ...)</li>
+            <li>after a while (typically several weeks or days), the server will stop connecting to you to make room for others. You can of course resubmit your ID but it's not necessary if you already have made some friends</li>
+            <li>you need Retroshare 0.6.6 or higher, the old certificat format is not supported</li>
+            <li>hidden nodes (tor and i2p) are not supported yet</li>
+        </ul>
+    </div>
+</div>
