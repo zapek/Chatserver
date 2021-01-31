@@ -34,7 +34,9 @@ public class ParseShortInviteResponse extends RsResponse
 		@JsonProperty("gpg_id")
 		private String pgpIdentifier;
 
-		private String name;
+		// Apparently some users manage to wedge non utf-8 characters in there so we'll ignore the field as Retroshare doesn't strictly need it
+		@JsonProperty(access = JsonProperty.Access.READ_ONLY)
+		private String name = "";
 		private String email;
 		private String location;
 		private String org;

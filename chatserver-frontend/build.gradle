@@ -1,34 +1,23 @@
 apply plugin: 'org.ec4j.editorconfig'
+apply plugin: 'com.github.node-gradle.node'
 
 editorconfig {
     includes = ['src/**']
     excludes = ['dist/**', 'node_modules/**']
 }
 
-task installAngular(type: Exec) {
-    description = "Install everything needed for Angular development"
-    group = BasePlugin.BUILD_GROUP
-    if (System.getProperty("os.name").toUpperCase().contains("WINDOWS")) {
-        commandLine "npm.cmd", "install"
-    } else {
-        commandLine "npm", "install"
-    }
+node {
+    download = true
+    version = "14.15.4"
+    workDir = file("${rootProject.projectDir}/.gradle/nodejs")
 }
 
-task buildAngular(type: Exec) {
-    description = "Build the Angular app"
-    group = BasePlugin.BUILD_GROUP
-    // ng doesn't exist as a file in windows -> ng.cmd
-    if (System.getProperty("os.name").toUpperCase().contains("WINDOWS")) {
-        commandLine "ng.cmd", "build"
-    } else {
-        commandLine "ng", "build"
-    }
-}
-
-task cleanAngular(type: Exec) {
-    description = "Deletes the Angular build directory"
-    group = BasePlugin.BUILD_GROUP
-    delete "dist"
-    delete "node_modules"
+task buildAngularProd(type: NpxTask) {
+    dependsOn npmInstall
+    command = 'ng'
+    args = ['build', '--prod']
+    inputs.files('package.json', 'package-lock.json', 'angular.json', 'tsconfig.json', 'tsconfig.app.json')
+    inputs.dir('src')
+    inputs.dir(fileTree("node_modules").exclude(".cache"))
+    outputs.dir('dist')
 }
