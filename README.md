@@ -5,17 +5,12 @@ time without having to organise a group of friends. It can also be a kind of "bo
 
 This server is running at https://retroshare.ch
 
-## Depencencies
+## Dependencies
 
 ### Backend
 
 - Java 11 (also tested with 15)
-- Gradle 6.7
-
-Installed by Gradle:
-- Spring Boot 2.4
-
-A MySQL server instance (tested with 5.7 and 8.0).
+- a MySQL server instance (tested with 5.7 and 8.0)
 
 ### Frontend
 
@@ -146,6 +141,8 @@ services:
 volumes:
   retroshare:
 ```
+
+Don't forget to have a MySQL instance somewhere.
 
 ## Note
 
