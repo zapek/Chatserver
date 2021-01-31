@@ -21,6 +21,7 @@ import java.time.Instant
 
 plugins {
     id 'org.springframework.boot' version '2.4.2' apply false
+    id "com.github.node-gradle.node" version "2.2.4" apply false
     id 'org.ec4j.editorconfig' version '0.0.3' apply false
 }
 
