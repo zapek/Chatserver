@@ -107,8 +107,7 @@ You can put the following environment variables into docker-compose.yml to confi
   the topic of the public lobby (default: https://retroshare.ch)
 
 - CHATSERVER_LOBBY_CREATE:
-  if true, create the public lobby after 10 minutes of not finding one already on the network.
-  If false, search for it forever (default: true)
+  if true, create the public lobby after 10 minutes of not finding one already on the network. If false, search for it forever (default: true)
 
 - CHATSERVER_MAX_FRIENDS:
   the maximum number of friends before starting to purge the old ones (default: 30)
@@ -116,12 +115,41 @@ You can put the following environment variables into docker-compose.yml to confi
 - WEB_PASSWORD:
   password for the API's protected endpoints (default: random per session, printed in the logs upon startup)
 
+## Docker images
+
+There are 2 readily available docker images if you don't want to build yourself
+
+	docker pull zapek/retroshare-service:0.6.6-rc2
+
+	docker pull zapek/chatserver:0.1.0
+
+Or use the following docker-compose.yml
+
+```yaml
+version: '3.7'
+
+services:
+
+  chatserver:
+    image: zapek/chatserver:0.1.0
+    environment:
+      - SERVER_PORT=8080
+    network_mode: "host"
+
+  retroshare-service:
+    image: zapek/retroshare-service:0.6.6-rc2
+    network_mode: "host"
+    volumes: 
+      - retroshare:/root/.retroshare
+    command: retroshare-service --jsonApiPort 9092 --jsonApiBindAddress 127.0.0.1
+
+volumes:
+  retroshare:
+```
 
 ## Note
 
-Retroshare-service fails to use UPNP for some reasons. Make sure you redirect the ports as needed. You can
-pass ```--port 6000``` to use port 6000 for example, as otherwise it'll pickup a random port which will
-require you to grep the logs to find out.
+Retroshare-service fails to use UPNP for some reasons. Make sure you redirect the ports as needed. You can pass ```--port 6000``` to use port 6000 for example, as otherwise it'll pickup a random port which will require you to grep the logs to find out.
 
 If you want to transfer docker images between hosts, use:
 

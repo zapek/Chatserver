@@ -50,7 +50,7 @@ editorconfig {
 }
 
 bootBuildImage {
-    imageName = "docker.io/zapek/${rootProject.name.toLowerCase()}:${project.version}"
+    imageName = "zapek/${rootProject.name.toLowerCase()}:${project.version}"
 }
 
 dependencies {
