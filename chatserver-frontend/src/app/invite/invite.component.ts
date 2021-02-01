@@ -28,7 +28,11 @@ export class InviteComponent implements OnInit {
 		this.chatserverService.addFriend(this.rsId)
 				.subscribe(data => this.router.navigate(["/result"], {state: {serverInvite: data.serverInvite}}),
 						error => {
-							this.errorMessage = error.message;
+							if (error.status == 422) {
+								this.errorMessage = "wrong ID or old certificate (Retroshare 0.6.6+ required)";
+							} else {
+								this.errorMessage = error.message;
+							}
 							this.sending = false;
 						});
 	}

@@ -59,6 +59,10 @@ public class InvitationService
 	public Invitation addFriend(String shortInvite)
 	{
 		long profileIdentifier = retroshareService.checkInvite(shortInvite);
+		if (profileIdentifier == 0)
+		{
+			return Invitation.ERROR;
+		}
 		if (profileService.findByProfileIdentifier(profileIdentifier).isPresent())
 		{
 			return Invitation.DUPLICATE;

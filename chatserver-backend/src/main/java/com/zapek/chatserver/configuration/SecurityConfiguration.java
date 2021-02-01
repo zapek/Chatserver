@@ -26,7 +26,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 @Configuration
-public class SecurityConfig extends WebSecurityConfigurerAdapter
+public class SecurityConfiguration extends WebSecurityConfigurerAdapter
 {
 	@Value("${security.csrf}")
 	private boolean csrfEnabled;
@@ -35,6 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 	protected void configure(HttpSecurity http) throws Exception
 	{
 		http
+				.cors().and()
 				.authorizeRequests()
 				.requestMatchers(EndpointRequest.to("health")).permitAll()
 				.antMatchers("/v1/invitation").permitAll()

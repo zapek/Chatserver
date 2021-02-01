@@ -116,7 +116,7 @@ There are 2 readily available docker images if you don't want to build yourself
 
 	docker pull zapek/retroshare-service:0.6.6-rc2
 
-	docker pull zapek/chatserver:0.1.0
+	docker pull zapek/chatserver:0.1.1
 
 Or use the following docker-compose.yml
 
@@ -126,7 +126,7 @@ version: '3.7'
 services:
 
   chatserver:
-    image: zapek/chatserver:0.1.0
+    image: zapek/chatserver:0.1.1
     environment:
       - SERVER_PORT=8080
     network_mode: "host"
@@ -150,7 +150,7 @@ Retroshare-service fails to use UPNP for some reasons. Make sure you redirect th
 
 If you want to transfer docker images between hosts, use:
 
-	docker save -o foo.tar
+	docker save -o foo.bar zapek/chatserver:0.1.1
 
 then on the target host
 

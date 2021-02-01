@@ -29,6 +29,7 @@ import com.zapek.chatserver.util.Id;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.codec.DecodingException;
 import org.springframework.stereotype.Service;
 
 import java.time.Duration;
@@ -129,11 +130,18 @@ public class RetroshareService
 
 	public long checkInvite(String shortInvite)
 	{
-		var parseRequest = new ParseShortInviteRequest(shortInvite);
-		ParseShortInviteResponse parseResult = retroshareClient.parseShortInvite(parseRequest).blockOptional(TIMEOUT).orElseThrow();
-		if (parseResult.isOk())
+		try
 		{
-			return Long.parseUnsignedLong(parseResult.getDetails().getPgpIdentifier(), 16);
+			var parseRequest = new ParseShortInviteRequest(shortInvite);
+			ParseShortInviteResponse parseResult = retroshareClient.parseShortInvite(parseRequest).blockOptional(TIMEOUT).orElseThrow();
+			if (parseResult.isOk())
+			{
+				return Long.parseUnsignedLong(parseResult.getDetails().getPgpIdentifier(), 16);
+			}
+		}
+		catch (DecodingException e)
+		{
+			log.error("Couldn't decode, old certificate: {}", e.getMessage());
 		}
 		return 0;
 	}
