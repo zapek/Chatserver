@@ -81,9 +81,10 @@ public class Startup
 
 		log.info("retroshare-service is ready");
 
+		disableNonEssentialServices();
+
 		if (needsConfiguration)
 		{
-			disableNonEssentialServices();
 			createIdentity();
 		}
 		subscribeToChatRoom();
@@ -134,15 +135,15 @@ public class Startup
 		retroshareService.updateService(33562624, true); // serviceinfo
 		retroshareService.updateService(33689856, true); // gxsid
 		retroshareService.updateService(34607360, true); // rtt
+		retroshareService.updateService(33562880, true); // bandwidth_ctrl
+		retroshareService.updateService(33620480, true); // status
 		retroshareService.updateService(33559296, false); // msg
 		retroshareService.updateService(33559552, false); // turtle
 		retroshareService.updateService(33560320, false); // ft
 		retroshareService.updateService(33560576, false); // Global Router
 		retroshareService.updateService(33560832, false); // file_database
-		retroshareService.updateService(33562880, false); // bandwidth_ctrl
 		retroshareService.updateService(33564672, false); // GxsTunnels
 		retroshareService.updateService(33620224, false); // banlist
-		retroshareService.updateService(33620480, false); // status
 		retroshareService.updateService(33690880, false); // gxsforums
 		retroshareService.updateService(33691136, false); // gxsposted
 		retroshareService.updateService(33691392, false); // gxschannels
