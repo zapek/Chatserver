@@ -23,6 +23,7 @@ import com.zapek.chatserver.client.request.*;
 import com.zapek.chatserver.client.response.*;
 import com.zapek.chatserver.properties.ChatserverProperties;
 import com.zapek.chatserver.service.PrefsService;
+import io.netty.handler.logging.LogLevel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 import reactor.netty.http.client.HttpClient;
+import reactor.netty.transport.logging.AdvancedByteBufFormat;
 
 import javax.annotation.PostConstruct;
 
@@ -66,7 +68,7 @@ public class RetroshareClient
 	{
 		if (log.isTraceEnabled())
 		{
-			HttpClient httpClient = HttpClient.create().wiretap(true);
+			HttpClient httpClient = HttpClient.create().wiretap("com.zapek", LogLevel.DEBUG, AdvancedByteBufFormat.TEXTUAL);
 			webClient = WebClient.builder().clientConnector(new ReactorClientHttpConnector(httpClient)).build();
 		}
 		else
