@@ -19,13 +19,15 @@
 
 package com.zapek.chatserver.web;
 
+import io.swagger.v3.oas.annotations.Hidden;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
+@Hidden
 public class HomeController
 {
-	@RequestMapping(value = "/")
+	@GetMapping(value = "/")
 	public String index()
 	{
 		return "redirect:swagger-ui.html";

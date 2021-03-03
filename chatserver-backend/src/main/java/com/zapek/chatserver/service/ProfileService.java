@@ -69,6 +69,7 @@ public class ProfileService
 		return profileRepository.findAllByTrustIsOrderByCreatedDesc(Trust.NEVER);
 	}
 
+	@Transactional
 	public void delete(Profile profile)
 	{
 		profileRepository.delete(profile);

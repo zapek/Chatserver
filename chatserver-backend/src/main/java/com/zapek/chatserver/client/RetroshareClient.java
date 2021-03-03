@@ -69,7 +69,10 @@ public class RetroshareClient
 		if (log.isTraceEnabled())
 		{
 			HttpClient httpClient = HttpClient.create().wiretap("com.zapek", LogLevel.DEBUG, AdvancedByteBufFormat.TEXTUAL);
-			webClient = WebClient.builder().clientConnector(new ReactorClientHttpConnector(httpClient)).build();
+			webClient = webClientBuilder
+					.baseUrl(chatserverProperties.getRetroshareService().getUrl())
+					.clientConnector(new ReactorClientHttpConnector(httpClient))
+					.build();
 		}
 		else
 		{
