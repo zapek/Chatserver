@@ -281,8 +281,7 @@ Response:
 }
 ```
 
-To turn off the server (yes, it's a GET...)
-GET http://127.0.0.1:9092/rsControl/rsGlobalShutDown
+To turn off the server POST http://127.0.0.1:9092/rsControl/rsGlobalShutDown
 ```json
 {
 	"pgpIds": [
