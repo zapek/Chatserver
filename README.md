@@ -125,9 +125,9 @@ version: '3.7'
 
 services:
 
-	chatserver:
-		image: zapek/chatserver:0.1.3
-		environment:
+    chatserver:
+        image: zapek/chatserver:0.1.3
+        environment:
       - SERVER_PORT=8080
     network_mode: "host"
 
