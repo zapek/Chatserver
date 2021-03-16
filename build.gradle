@@ -42,7 +42,7 @@ task buildRetroshareImage(type:Exec) {
 
 configure(subprojects - project(":chatserver-frontend")) {
     group = 'com.zapek'
-    version = '0.1.3'
+    version = '0.1.4'
 
     apply plugin: 'io.spring.dependency-management'
     apply plugin: 'java-library'

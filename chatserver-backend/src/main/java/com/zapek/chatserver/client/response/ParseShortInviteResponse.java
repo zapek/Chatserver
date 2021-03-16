@@ -46,7 +46,7 @@ public class ParseShortInviteResponse extends RsResponse
 		@JsonProperty("authcode")
 		private String authCode;
 
-		private long[] gpgSigners;
+		//private long[] gpgSigners;
 		private int trustLvl;
 		private int validLvl;
 
@@ -215,16 +215,6 @@ public class ParseShortInviteResponse extends RsResponse
 		public void setAuthCode(String authCode)
 		{
 			this.authCode = authCode;
-		}
-
-		public long[] getGpgSigners()
-		{
-			return gpgSigners;
-		}
-
-		public void setGpgSigners(long[] gpgSigners)
-		{
-			this.gpgSigners = gpgSigners;
 		}
 
 		public int getTrustLvl()

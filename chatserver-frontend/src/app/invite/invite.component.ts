@@ -30,6 +30,8 @@ export class InviteComponent implements OnInit {
 						error => {
 							if (error.status == 422) {
 								this.errorMessage = "wrong ID or old certificate (Retroshare 0.6.6+ required)";
+							} else if (error.status == 409) {
+								this.errorMessage = "ID was already submitted"
 							} else {
 								this.errorMessage = error.message;
 							}
