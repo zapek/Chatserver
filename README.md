@@ -24,6 +24,7 @@ Run the backend locally, either with your IDE using the spring _dev_ profile or 
 
 If you want to run a Retroshare-service instance, do:
 
+	cd retroshare
 	docker build -t retroshare --build-arg KEEP_SOURCE=true .
 (this can take a while, go have a coffee or something)
 
@@ -114,7 +115,7 @@ You can put the following environment variables into docker-compose.yml to confi
 
 There are 2 readily available docker images if you don't want to build yourself
 
-	docker pull zapek/retroshare-service:0.6.6-rc2
+	docker pull zapek/retroshare-service:0.6.6
 
 	docker pull zapek/chatserver:0.1.4
 
@@ -132,7 +133,7 @@ services:
     network_mode: "host"
 
   retroshare-service:
-    image: zapek/retroshare-service:0.6.6-rc2
+    image: zapek/retroshare-service:0.6.6
     network_mode: "host"
     volumes: 
       - retroshare:/root/.retroshare
