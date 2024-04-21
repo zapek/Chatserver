@@ -1,26 +1,28 @@
 <nav class="navbar navbar-expand-sm navbar-light bg-light">
-    <span class="navbar-brand mb-0 h1">
-        <img src="/assets/logo.png" width="32" height="32" alt="">
-        Retroshare.ch
-    </span>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" (click)="toggleCollapse()" [attr.aria-expanded]="!isCollapsed" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+    <div class="container-fluid">
+        <div class="navbar-brand mb-0 h1">
+            <img src="/assets/logo.png" width="32" height="32" alt="">
+            Retroshare.ch
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" (click)="toggleCollapse()" [attr.aria-expanded]="!isCollapsed" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent" [ngbCollapse]="isCollapsed">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item" routerLinkActive="active">
-                <a class="nav-link" routerLink="/invite">Invite</a>
-            </li>
-            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-                <a class="nav-link" routerLink="/links">Links</a>
-            </li>
-        </ul>
-        <span class="navbar-text small">
-            Status:
-            <i-bs *ngIf="serverState == eServerState.UP" name="check-circle-fill" class="text-success" title="Chat server is up"></i-bs>
-            <i-bs *ngIf="serverState == eServerState.DOWN" name="exclamation-circle-fill" class="text-danger" title="Server is down: {{serverErrorMessage}}"></i-bs>
-            <span *ngIf="serverState == eServerState.UNKNOWN" title="Server status is unknown">...</span>
-        </span>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" [ngbCollapse]="isCollapsed">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link" routerLink="/invite">Invite</a>
+                </li>
+                <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                    <a class="nav-link" routerLink="/links">Links</a>
+                </li>
+            </ul>
+            <div class="d-flex small">
+                Status:
+                <i-bs *ngIf="serverState == eServerState.UP" name="check-circle-fill" class="text-success" title="Chat server is up"></i-bs>
+                <i-bs *ngIf="serverState == eServerState.DOWN" name="exclamation-circle-fill" class="text-danger" title="Server is down: {{serverErrorMessage}}"></i-bs>
+                <span *ngIf="serverState == eServerState.UNKNOWN" title="Server status is unknown">...</span>
+            </div>
+        </div>
     </div>
 </nav>

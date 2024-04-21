@@ -14,7 +14,7 @@ This server is running at https://retroshare.ch
 
 ### Frontend
 
-- Angular 10
+- Angular 17
 
 ## Development
 
@@ -50,7 +50,7 @@ If you want to go with docker, install docker-compose and do:
 
 The frontend has to be deployed manually. Make sure your server is listed in ```environment.prod.ts```, build it with
 
-	ng build --prod
+	ng build --configuration production
 
 Then copy the content of ```dist/chatserver-frontend``` in your webserver root. Don't forget to setup a proxy
 in case the backend is running on the same host, for example with Apache:

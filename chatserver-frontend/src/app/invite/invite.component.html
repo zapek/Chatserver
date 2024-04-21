@@ -12,7 +12,7 @@
         </ul>
 
         <form>
-            <div class="form-group">
+            <div class="mb-3">
                 <textarea class="form-control fixed" rows="1" name="retroshareId" [ngModel]="rsId | trim" (ngModelChange)="rsId=$event" placeholder="Paste your Retroshare ID here" maxlength="512"></textarea>
             </div>
             <button type="submit" [disabled]="!rsId || sending" (click)="send()" class="btn btn-primary">
@@ -27,6 +27,7 @@
             <li>after a while (typically several weeks or days), the server will stop connecting to you to make room for others. You can of course resubmit your ID but it's not necessary if you already have made some friends</li>
             <li>you need Retroshare 0.6.6 or higher, the old certificat format is not supported</li>
             <li>hidden nodes (tor and i2p) are not supported yet</li>
+            <li>there's an AI bot in the chat room, just talk to <i>Gaudie</i></li>
         </ul>
     </div>
 </div>

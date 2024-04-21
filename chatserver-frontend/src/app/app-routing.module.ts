@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import {InviteComponent} from "./invite/invite.component";
-import {LinksComponent} from "./links/links.component";
-import {ResultComponent} from "./result/result.component";
+import { RouterModule, Routes } from '@angular/router';
+import { InviteComponent } from "./invite/invite.component";
+import { LinksComponent } from "./links/links.component";
+import { ResultComponent } from "./result/result.component";
 
 const routes: Routes = [
 	{path: '', redirectTo: '/invite', pathMatch: 'full'},
@@ -12,7 +12,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+	imports: [RouterModule.forRoot(routes, {})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
