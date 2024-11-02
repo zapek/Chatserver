@@ -21,13 +21,12 @@ package com.zapek.chatserver.service;
 
 import com.zapek.chatserver.database.model.Prefs;
 import com.zapek.chatserver.database.repository.PrefsRepository;
+import jakarta.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import javax.annotation.PostConstruct;
 
 @Service
 @Transactional(readOnly = true) // MySQL needs @Transactional on all saving methods, not just save()

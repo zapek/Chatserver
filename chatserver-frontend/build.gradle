@@ -1,10 +1,4 @@
-apply plugin: 'org.ec4j.editorconfig'
 apply plugin: 'com.github.node-gradle.node'
-
-editorconfig {
-    includes = ['src/**']
-    excludes = ['dist/**', 'node_modules/**']
-}
 
 node {
     download = true

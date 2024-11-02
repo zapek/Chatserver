@@ -17,8 +17,6 @@
  * along with Chatserver.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import java.time.Instant
-
 plugins {
     id 'org.springframework.boot'
     id 'java'
@@ -45,10 +43,6 @@ springBoot {
     }
 }
 
-editorconfig {
-    includes = ['src/**']
-}
-
 bootBuildImage {
     imageName = "zapek/${rootProject.name.toLowerCase()}:${project.version}"
 }
@@ -56,14 +50,14 @@ bootBuildImage {
 dependencies {
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    runtimeOnly 'mysql:mysql-connector-java'
+    runtimeOnly 'com.mysql:mysql-connector-j'
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-webflux' // for WebClient
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.springframework.boot:spring-boot-starter-json'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
-    implementation 'org.springdoc:springdoc-openapi-ui:1.5.2'
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0'
     implementation 'org.flywaydb:flyway-core'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'

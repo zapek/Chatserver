@@ -27,15 +27,17 @@ import io.swagger.v3.oas.annotations.headers.Header;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @Tag(name = "Invitation", description = "Retroshare short invites handling")
 @RestController
@@ -58,17 +60,15 @@ public class InvitationController
 	@ApiResponse(responseCode = "200", description = "Invitation added successfully", headers = @Header(name = "Invitation", description = "The invitation of the chatserver, to add in the client", schema = @Schema(type = "string")))
 	public ResponseEntity<InvitationResponse> addInvitation(@Valid @RequestBody InvitationRequest request)
 	{
-		switch (invitationService.addFriend(request.getInvite()))
+		return switch (invitationService.addFriend(request.getInvite()))
 		{
-			case ADDED:
+			case ADDED ->
+			{
 				invitationService.trimFriends(chatserverProperties.getMaxFriends());
-				return ResponseEntity.ok(new InvitationResponse(retroshareService.getOwnInvitation()));
-
-			case DUPLICATE:
-				return ResponseEntity.status(HttpStatus.CONFLICT).build();
-
-			default:
-				return ResponseEntity.unprocessableEntity().build();
-		}
+				yield ResponseEntity.ok(new InvitationResponse(retroshareService.getOwnInvitation()));
+			}
+			case DUPLICATE -> ResponseEntity.status(HttpStatus.CONFLICT).build();
+			default -> ResponseEntity.unprocessableEntity().build();
+		};
 	}
 }

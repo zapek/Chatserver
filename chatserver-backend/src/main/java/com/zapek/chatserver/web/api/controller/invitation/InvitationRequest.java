@@ -19,7 +19,7 @@
 
 package com.zapek.chatserver.web.api.controller.invitation;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 public class InvitationRequest
 {

@@ -19,7 +19,8 @@
 
 package com.zapek.chatserver.database.model;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+
 import java.util.Arrays;
 
 @Table(name = "prefs")

@@ -24,6 +24,7 @@ import com.zapek.chatserver.client.response.*;
 import com.zapek.chatserver.properties.ChatserverProperties;
 import com.zapek.chatserver.service.PrefsService;
 import io.netty.handler.logging.LogLevel;
+import jakarta.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,8 +35,6 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 import reactor.netty.http.client.HttpClient;
 import reactor.netty.transport.logging.AdvancedByteBufFormat;
-
-import javax.annotation.PostConstruct;
 
 /**
  * Client for the Retroshare API exposed by retroshare-service.
