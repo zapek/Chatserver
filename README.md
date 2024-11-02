@@ -9,7 +9,7 @@ This server is running at https://retroshare.ch
 
 ### Backend
 
-- Java 11 (also tested with 15)
+- Java 21
 - a MySQL server instance (tested with 5.7 and 8.0)
 
 ### Frontend
